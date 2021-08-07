@@ -1,19 +1,20 @@
 {
-  "name": "standard-notes-editor-template-cra-typescript",
-  "version": "0.1.0",
-  "description": "Template for building editors for Standard Notes using Create React App and TypeScript",
+  "name": "pomodoro-sn",
+  "version": "1.0.0",
+  "description": "A Pomodoro timer for Standard Notes at the bottom of any editor",
   "keywords": [
     "Standard Notes",
-    "Standard Notes Extensions"
+    "Standard Notes Extensions",
+    "Pomodoro"
   ],
   "private": true,
   "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/standardnotes/editor-template-cra-typescript.git"
+    "url": "https://github.com/tryonlinux/pomodoro-sn.git"
   },
   "bugs": {
-    "url": "https://github.com/standardnotes/editor-template-cra-typescript/issues"
+    "url": "https://github.com/tryonlinux/pomodoro-sn/issues"
   },
   "sn": {
     "main": "build/index.html"
@@ -37,6 +38,7 @@
     "pretty": "prettier --write 'src/**/*.{html,css,scss,js,jsx,ts,tsx,json}' README.md"
   },
   "dependencies": {
+    "@standardnotes/component-relay": "^2.1.0",
     "@testing-library/dom": "^7.29.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",

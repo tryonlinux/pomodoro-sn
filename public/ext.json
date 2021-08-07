@@ -1,0 +1,13 @@
+{
+  "identifier": "com.tryomas.pomodoro-sn",
+  "name": "Pomodoro Time",
+  "content_type": "SN|Component",
+  "area": "editor-stack",
+  "version": "0.1.0",
+  "description": "Pomodoro timer for Standard Notes in the Editor Bottom Bar",
+  "url": "http://localhost:3001/index.html",
+  "download_url": "",
+  "latest_url": "",
+  "marketing_url": "https://github.com/standardnotes/editor-template-cra-typescript",
+  "thumbnail_url": ""
+}

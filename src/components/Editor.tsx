@@ -1,143 +1,87 @@
+//TODO add actual count down timer function
+//TODO Add flash function
+//TODO add alert function
+//TODO add gif to readme
+//TODO add to listed.to
 import React from 'react';
-import { EditorKit, EditorKitDelegate } from 'sn-editor-kit';
-
-export enum HtmlElementId {
-  snComponent = 'sn-component',
-  textarea = 'textarea',
-}
-
-export enum HtmlClassName {
-  snComponent = 'sn-component',
-  textarea = 'sk-input contrast textarea',
-}
-
+import TimeInput from './TimeInput';
+import Timer from './Timer';
+import ComponentRelay from '@standardnotes/component-relay';
+import Settings from './Settings';
+import Actions from './Actions';
+import Modes from './Modes';
 export interface EditorInterface {
-  printUrl: boolean;
-  text: string;
+  isCounting: boolean;
+  time: number;
+  soundOn: boolean;
+  flashOn: boolean;
 }
 
 const initialState = {
-  printUrl: false,
-  text: '',
+  isCounting: false,
+  time: 25,
+  soundOn: true,
+  flashOn: true,
 };
 
-let keyMap = new Map();
-
 export default class Editor extends React.Component<{}, EditorInterface> {
-  editorKit: any;
-
   constructor(props: EditorInterface) {
     super(props);
-    this.configureEditorKit();
     this.state = initialState;
+    this.setTime = this.setTime.bind(this);
+    this.toggleTimer = this.toggleTimer.bind(this);
+    this.toggleSound = this.toggleSound.bind(this);
+    this.toggleFlash = this.toggleFlash.bind(this);
+    let componentRelay = new ComponentRelay({ targetWindow: window });
+    componentRelay.setSize('100%', '40px');
   }
 
-  configureEditorKit = () => {
-    let delegate = new EditorKitDelegate({
-      /** This loads every time a different note is loaded */
-      setEditorRawText: (text: string) => {
-        this.setState({
-          ...initialState,
-          text,
-        });
-      },
-      clearUndoHistory: () => {},
-      getElementsBySelector: () => [],
-    });
-
-    this.editorKit = new EditorKit({
-      delegate: delegate,
-      mode: 'plaintext',
-      supportsFilesafe: false,
-    });
-  };
-
-  handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const target = event.target;
-    const value = target.value;
-    this.saveText(value);
-  };
-
-  saveText = (text: string) => {
-    this.saveNote(text);
-    this.setState({
-      text: text,
-    });
-  };
-
-  saveNote = (text: string) => {
-    /** This will work in an SN context, but breaks the standalone editor,
-     * so we need to catch the error
-     */
-    try {
-      this.editorKit.onEditorValueChanged(text);
-    } catch (error) {
-      console.log('Error saving note:', error);
-    }
-  };
-
-  onBlur = (e: React.FocusEvent) => {};
-
-  onFocus = (e: React.FocusEvent) => {};
-
-  onKeyDown = (e: React.KeyboardEvent | KeyboardEvent) => {
-    keyMap.set(e.key, true);
-    // Do nothing if 'Control' and 's' are pressed
-    if (keyMap.get('Control') && keyMap.get('s')) {
-      e.preventDefault();
-    }
-  };
-
-  onKeyUp = (e: React.KeyboardEvent | KeyboardEvent) => {
-    keyMap.delete(e.key);
-  };
+  setTime(time: number): void {
+    this.setState({ time, isCounting: false });
+  }
+  toggleTimer(isCounting: boolean) {
+    //TODO disable either start of stop
+    //TODO then either start the countdown or not
+    this.setState({ isCounting });
+  }
+  toggleSound() {
+    this.setState({ soundOn: !this.state.soundOn });
+  }
+  toggleFlash() {
+    this.setState({ flashOn: !this.state.flashOn });
+  }
 
   render() {
-    const { text } = this.state;
     return (
-      <div
-        className={
-          HtmlElementId.snComponent + (this.state.printUrl ? ' print-url' : '')
-        }
-        id={HtmlElementId.snComponent}
-        tabIndex={0}
-      >
-        <p>
-          Edit <code>src/components/Editor.tsx</code> and save to reload.
-        </p>
-        <p>
-          Visit the{' '}
-          <a
-            href="https://docs.standardnotes.org/extensions/intro"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Standard Notes documentation
-          </a>{' '}
-          to learn how to work with the Standard Notes API or{' '}
-          <a
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          .
-        </p>
-        <textarea
-          id={HtmlElementId.textarea}
-          name="text"
-          className={'sk-input contrast textarea'}
-          placeholder="Type here. Text in this textarea is automatically saved in Standard Notes"
-          rows={15}
-          spellCheck="true"
-          value={text}
-          onBlur={this.onBlur}
-          onChange={this.handleInputChange}
-          onFocus={this.onFocus}
-          onKeyDown={this.onKeyDown}
-          onKeyUp={this.onKeyUp}
-        />
+      <div className="sn-component">
+        <div className="container">
+          <div className="column">
+            {this.state.isCounting ? (
+              <Timer time={this.state.time} />
+            ) : (
+              <TimeInput time={this.state.time} setTime={this.setTime} />
+            )}
+          </div>
+          <div className="vl column" />
+
+          <Actions
+            setTime={this.setTime}
+            isCounting={this.state.isCounting}
+            toggleTimer={this.toggleTimer}
+          />
+          <div className="vl column" />
+
+          <Modes setTime={this.setTime} isCounting={this.state.isCounting} />
+
+          <div className="vl column" />
+
+          <Settings
+            soundOn={this.state.soundOn}
+            flashOn={this.state.flashOn}
+            toggleSound={this.toggleSound}
+            toggleFlash={this.toggleFlash}
+          />
+        </div>
       </div>
     );
   }

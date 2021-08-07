@@ -1,12 +1,13 @@
 @import '~sn-stylekit/dist/stylekit.css';
 
 :root {
-  --sn-stylekit-font-size-editor: 16px;
+  --sn-stylekit-font-size-editor: 16x;
   --sn-stylekit-monospace-font: SFMono-Regular, Consolas, Liberation Mono, Menlo,
     'Ubuntu Mono', courier, monospace;
+  max-height: 50px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
   :root {
     --sn-stylekit-font-size-editor: 18px;
   }
@@ -15,13 +16,53 @@
   }
 }
 
+.container {
+  position: relative;
+  height: 40px;
+  width: 99%;
+  text-align: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.column {
+  display: inline-block;
+  height: 20px;
+  margin-left: 10px;
+  white-space: normal;
+}
+.timer {
+  font-size: 24px;
+  text-align: right;
+}
+.vl {
+  border-left: 2px solid rgb(57, 132, 247);
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 15px;
+}
+.time-input {
+  margin-top: 3px;
+  width: 30px;
+}
+label {
+  margin-top: 3px;
+
+  margin-left: 5px;
+}
+button {
+  margin-top: 3px;
+  margin-right: 3px;
+  margin-bottom: 10px;
+}
 body,
 html {
   background-color: transparent;
   background-color: var(--sn-stylekit-background-color);
   font-family: var(--sn-stylekit-sans-serif-font);
   font-size: var(--sn-stylekit-base-font-size);
-  height: 100%;
+  height: 10%;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -33,43 +74,18 @@ html {
 }
 
 .sn-component {
-  display: flex;
+  //display: flex;
+  width: 800px;
+  height: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
   flex-direction: column;
   font-size: var(--sn-stylekit-font-size-editor);
-  min-height: 100vh;
-  @media screen and (max-width: 420px) {
+
+  @media screen and (max-width: 900px) {
     min-height: -webkit-fill-available;
   }
-
-  .sk-input.textarea {
-    padding: 9px 10px;
-    max-width: inherit;
-    width: calc(100% - 22px);
-    resize: vertical;
-    overflow-y: auto;
-    font-family: var(--sn-stylekit-sans-serif-font);
-    font-size: var(--sn-stylekit-font-size-editor);
-    line-height: 1.7;
-  }
-}
-
-a {
-  color: var(--sn-stylekit-info-color); // #086dd6;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-code {
-  box-sizing: border-box;
-  word-wrap: break-word;
-  padding: 0.2em 0.4em;
-  margin: 0;
-  font-size: 85%;
-  background-color: var(--sn-stylekit-contrast-background-color);
-  border-radius: 3px;
 }
 
 p {

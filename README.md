@@ -1,6 +1,6 @@
-# editor-template-cra-typescript
+# Pomodoro-SN
 
-Template for building editors for Standard Notes using Create React App and TypeScript
+A Pomodoro timer for Standard Notes at the bottom of any editor
 
 ## Development
 
@@ -10,7 +10,7 @@ The general instructions setting up an environment to develop Standard Notes ext
 
 1. Fork the [repository](https://github.com/standardnotes/editor-template-cra-typescript) on GitHub.
 2. [Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) your fork of the repository.
-3. Run `cd editor-template-cra-typescript` to enter the `editor-template-cra-typescript` directory.
+3. Run `cd pomodoro-sn` to enter the `pomodoro-sn` directory.
 4. Run `yarn install` to install the dependencies on your machine as they are described in `yarn.lock`.
 
 ### Testing in the browser
