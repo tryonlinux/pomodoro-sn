@@ -4,6 +4,7 @@ export interface TimerProps {
   time: number;
   soundOn: boolean;
   flashOn: boolean;
+  isStopped: boolean;
   flash: () => void;
 }
 
@@ -26,6 +27,14 @@ class Timer extends React.Component<TimerProps, TimerState> {
   componentDidUpdate(prevProps: TimerProps) {
     if (this.props.time !== prevProps.time) {
       this.setState({ mins: this.props.time });
+    }
+    if (this.props.isStopped !== prevProps.isStopped) {
+      if (this.props.isStopped) {
+        window.clearInterval(this.timer);
+      } else {
+        this.timer = 0;
+        this.startTimer();
+      }
     }
   }
 

@@ -2,6 +2,8 @@ import * as React from 'react';
 export interface ActionsProps {
   setTime: (time: number) => void;
   toggleTimer: (isCounting: boolean) => void;
+  toggleIsStopped: () => void;
+  isStopped: boolean;
   isCounting: boolean;
 }
 
@@ -12,25 +14,27 @@ class Actions extends React.Component<ActionsProps, ActionsState> {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <div className="column">
         <button
           style={{ backgroundColor: 'lightgreen' }}
-          disabled={this.props.isCounting}
+          disabled={!this.props.isStopped}
           onClick={() => this.props.toggleTimer(true)}
         >
           Start
         </button>
         <button
           style={{ backgroundColor: 'crimson' }}
-          disabled={!this.props.isCounting}
-          onClick={() => this.props.toggleTimer(false)}
+          disabled={this.props.isStopped}
+          onClick={() => this.props.toggleIsStopped()}
         >
           Stop
         </button>
         <button
           style={{ backgroundColor: 'lightgray' }}
+          disabled={!this.props.isCounting}
           onClick={() => this.props.setTime(25)}
         >
           Reset
