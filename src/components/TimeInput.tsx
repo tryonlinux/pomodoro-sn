@@ -33,12 +33,20 @@ class TimeInput extends React.Component<TimeInputProps, TimeInputState> {
             type="number"
             placeholder="0"
             name="timeInput"
+            max="59"
+            min="0"
             value={this.state.timeInput}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+              let value: number = Number(e.target.value);
+              if (value > 59) {
+                value = 59;
+              } else if (value < 1) {
+                value = 1;
+              }
               this.setState({
-                timeInput: Number(e.target.value),
-              })
-            }
+                timeInput: Number(value),
+              });
+            }}
             onBlur={() => this.props.setTime(this.state.timeInput)}
           />
         </form>

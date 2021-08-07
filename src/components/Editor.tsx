@@ -1,6 +1,5 @@
-//TODO add actual count down timer function
 //TODO Add flash function
-//TODO add alert function
+//TODO add pause function to stop
 //TODO add gif to readme
 //TODO add to listed.to
 import React from 'react';
@@ -15,6 +14,7 @@ export interface EditorInterface {
   time: number;
   soundOn: boolean;
   flashOn: boolean;
+  isStopped: boolean;
 }
 
 const initialState = {
@@ -22,6 +22,7 @@ const initialState = {
   time: 25,
   soundOn: true,
   flashOn: true,
+  isStopped: false,
 };
 
 export default class Editor extends React.Component<{}, EditorInterface> {
@@ -32,6 +33,7 @@ export default class Editor extends React.Component<{}, EditorInterface> {
     this.toggleTimer = this.toggleTimer.bind(this);
     this.toggleSound = this.toggleSound.bind(this);
     this.toggleFlash = this.toggleFlash.bind(this);
+    this.flash = this.flash.bind(this);
     let componentRelay = new ComponentRelay({ targetWindow: window });
     componentRelay.setSize('100%', '40px');
   }
@@ -50,6 +52,9 @@ export default class Editor extends React.Component<{}, EditorInterface> {
   toggleFlash() {
     this.setState({ flashOn: !this.state.flashOn });
   }
+  flash() {
+    alert('flash flash');
+  }
 
   render() {
     return (
@@ -57,7 +62,12 @@ export default class Editor extends React.Component<{}, EditorInterface> {
         <div className="container">
           <div className="column">
             {this.state.isCounting ? (
-              <Timer time={this.state.time} />
+              <Timer
+                time={this.state.time}
+                soundOn={this.state.soundOn}
+                flashOn={this.state.flashOn}
+                flash={this.flash}
+              />
             ) : (
               <TimeInput time={this.state.time} setTime={this.setTime} />
             )}
