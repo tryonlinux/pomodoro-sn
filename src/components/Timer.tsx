@@ -74,7 +74,7 @@ class Timer extends React.Component<TimerProps, TimerState> {
   reset() {
     window.clearInterval(this.timer);
     if (this.props.soundOn) {
-      this.beep(65, 500, 300);
+      this.beep(65, 500, 400);
     }
     if (this.props.flashOn) {
       this.props.flash();

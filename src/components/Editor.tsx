@@ -1,6 +1,3 @@
-//TODO Add flash function
-//TODO add gif to readme
-//TODO add to listed.to
 import React from 'react';
 import TimeInput from './TimeInput';
 import Timer from './Timer';
@@ -14,6 +11,7 @@ export interface EditorInterface {
   soundOn: boolean;
   flashOn: boolean;
   isStopped: boolean;
+  flashStyle: string;
 }
 
 const initialState = {
@@ -22,6 +20,7 @@ const initialState = {
   soundOn: true,
   flashOn: true,
   isStopped: true,
+  flashStyle: '',
 };
 
 export default class Editor extends React.Component<{}, EditorInterface> {
@@ -39,7 +38,12 @@ export default class Editor extends React.Component<{}, EditorInterface> {
   }
 
   setTime(time: number): void {
-    this.setState({ time, isCounting: false, isStopped: true });
+    this.setState({
+      time,
+      isCounting: false,
+      isStopped: true,
+      flashStyle: '',
+    });
   }
   toggleTimer(isCounting: boolean) {
     this.setState({ isCounting, isStopped: !this.state.isStopped });
@@ -53,14 +57,19 @@ export default class Editor extends React.Component<{}, EditorInterface> {
   toggleIsStopped() {
     this.setState({ isStopped: !this.state.isStopped });
   }
+  timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
   flash() {
-    alert('flash flash');
+    this.setState({
+      flashStyle: 'blink-background',
+    });
   }
 
   render() {
     return (
       <div className="sn-component">
-        <div className="container">
+        <div className={`container ${this.state.flashStyle} `}>
           <div className="column">
             {this.state.isCounting ? (
               <Timer

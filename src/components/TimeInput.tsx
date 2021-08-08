@@ -33,13 +33,13 @@ class TimeInput extends React.Component<TimeInputProps, TimeInputState> {
             type="number"
             placeholder="0"
             name="timeInput"
-            max="59"
+            max="60"
             min="0"
             value={this.state.timeInput}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
               let value: number = Number(e.target.value);
-              if (value > 59) {
-                value = 59;
+              if (value > 60) {
+                value = 60;
               } else if (value < 1) {
                 value = 1;
               }

@@ -74,8 +74,6 @@ html {
 }
 
 .sn-component {
-  //display: flex;
-  width: 800px;
   height: 40px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -92,5 +90,16 @@ p {
   padding: 0px 1em;
 }
 
+.blink-background {
+  animation: blinkingText 500ms 5;
+}
+@keyframes blinkingText {
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: red;
+  }
+}
 @import './print.scss';
 @import './dark.scss';
