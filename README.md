@@ -5,6 +5,10 @@ A Pomodoro timer for Standard Notes at the bottom of any editor
 ## Demo
 ![](https://github.com/tryonlinux/pomodoro-sn/blob/ae94f7bf6d30d61c7c83d9baa3db853299dbeb26/pomodoro.gif)
 
+## Support
+
+[Buy me a Coffee](https://www.buymeacoffee.com/tryomas)
+
 ## Development
 
 **Prerequisites:** Install [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpkg.com/en/docs/install/), and [Git](https://github.com/git-guides/install-git) on your computer.
