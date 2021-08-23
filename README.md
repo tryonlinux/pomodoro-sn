@@ -5,6 +5,9 @@ A Pomodoro timer for Standard Notes at the bottom of any editor
 ## Demo
 ![](https://github.com/tryonlinux/pomodoro-sn/blob/ae94f7bf6d30d61c7c83d9baa3db853299dbeb26/pomodoro.gif)
 
+## Install
+Install Link: https://listed.to/p/fVZ0afsCDa
+
 ## Support
 
 [Buy me a Coffee](https://www.buymeacoffee.com/tryomas)
