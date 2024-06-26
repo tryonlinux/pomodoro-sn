@@ -1,4 +1,4 @@
-# Pomodoro-SN
+# Pomodoro-SN -- Archived, feel free to fork and self-host
 
 A Pomodoro timer for Standard Notes at the bottom of any editor
 
